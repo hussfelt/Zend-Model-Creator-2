@@ -38,18 +38,18 @@ cd into your directory
 `cd Zend-Model-Creator-2`
 
 Run with php:
-`php zmc.php --db=[DATABASENAME] --user=[USERNAME] --password=[PASSWORD]`
+`php zmc.php --host=[DB_HOST] --db=[DATABASE_NAME] --user=[USERNAME] --password=[PASSWORD]`
 
 Options
 -------
 
-`--without-entity`
+`--without-entity=1`
 Will not generate entities
 
-`--without-mapper`
+`--without-mapper=1`
 Will not generate mapper
 
-`--without-service`
+`--without-service=1`
 Will not generate the services
 
 `--namespace=[NAMESPACE]`
