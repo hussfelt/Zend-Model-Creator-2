@@ -1,0 +1,21 @@
+{
+    "name": "hussfelt/zend-model-creator-2",
+    "description": "This project is created to avoid the time spent on creating Entities/Services/Mappers for ZendFramework projects. It is based on some parts of the ZF-Commons team.",
+    "keywords": [
+        "zf2",
+        "generator",
+        "models",
+        "services"
+    ],
+    "homepage": "https://github.com/hussfelt/Zend-Model-Creator-2",
+    "authors": [
+        {
+            "name": "Henrik Hussfelt",
+            "email": "henrik@hussfelt.net",
+            "homepage": "http://hussfelt.net/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    }
+}
