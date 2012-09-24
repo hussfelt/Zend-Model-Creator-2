@@ -6,7 +6,7 @@
 *
 **/
 
-//require_once 'DTOCreatorService.php';
+require_once 'EntityCreatorService.php';
 
 class ZendModelCreator2 {
 
@@ -21,6 +21,8 @@ class ZendModelCreator2 {
 	private static $_version = '0.5';
 	// Generator string
 	private static $_generator = 'Zend Model Creator 2, [https://github.com/hussfelt/Zend-Model-Creator-2]';
+	// Namespace
+	private static $_namespace = 'Zmc';
 
 	// Directory separator
 	public static $_DS = '/';
@@ -31,6 +33,7 @@ class ZendModelCreator2 {
     public static $STRING = 'string';
     public static $INTEGER = 'integer';
     public static $DATETIME = 'datetime';
+    public static $DATE = 'date';
 	public static $ARRAY = 'array';
 	public static $DOUBLE = 'double';
 
@@ -40,6 +43,11 @@ class ZendModelCreator2 {
 	public function __construct($settings){
 		// Set settings
 		$this->_settings = $settings;
+
+		// Set the namespace, if it should change
+		if ($settings['namespace'] != '') {
+			$this->_namespace = $settings['namespace'];
+		}
 
 		// Open db connection
 		if (!$this->_dbcon = mysql_connect($this->getSetting('mysql_host'),$this->getSetting('mysql_user'),$this->getSetting('mysql_password'))) {
@@ -55,9 +63,6 @@ class ZendModelCreator2 {
 
 		// close connection
 		mysql_close($this->_dbcon);
-		echo "OK";
-		print_r(self::$tables);
-		exit;
 	}
 
 	/**
@@ -84,6 +89,13 @@ class ZendModelCreator2 {
 	*/
 	public static function getGenerator() {
 		return self::$_generator;
+	}
+
+	/**
+	* Get generator string
+	*/
+	public static function getNamespace() {
+		return self::$_namespace;
 	}
 
 	/**
@@ -131,6 +143,33 @@ class ZendModelCreator2 {
 				// set to global table
 				$final = array($name => array($type, $default_value));
 				self::$tables[$tbl]['fields'][] = $final;
+			}
+		}
+	}
+
+	/**
+	* Get generated data from our services
+	*/
+	public function getDataFromServices() {
+		foreach (self::$tables as $table => $data) {
+			// clean interface array
+			foreach ($this->getSetting('types') as $type => $get_data) {
+				if($get_data) {
+					// Quit if no primary key is set.
+					if (isset($data['primary_key'])) {
+						// set object names to Ucfirst then lowercase.
+						$table = ucfirst(strtolower($table));
+						switch ($type) {
+							case "create_entity":
+								$EntityService = new EntityCreatorService();
+								$this->_data[$table]['entity'] = $EntityService->createEntity($table,$data);
+								break;
+							default:
+								die("Settings not set correctly. [types]");
+								break;
+						}
+					}
+				}
 			}
 		}
 	}
