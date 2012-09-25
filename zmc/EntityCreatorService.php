@@ -30,8 +30,6 @@ class EntityCreatorService {
 		$this->_generateClassDeclarations($parameterArray['fields']);
 		$this->_generateClassGettersSetters($parameterArray['fields']);
 		$this->_generateClassFooter();
-		print_r($this->_data);
-		exit;
 		return $this->_data;
 	}
 
@@ -56,7 +54,6 @@ namespace ".ZendModelCreator2::getNamespace()."\Entity;
 
 /**
 * $className
-*
 *
 * @author ".ZendModelCreator2::getGenerator()."
 * @version ".ZendModelCreator2::getVersion()."

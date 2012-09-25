@@ -7,7 +7,7 @@
 **/
 
 require_once 'EntityCreatorService.php';
-//require_once 'MapperCreatorService.php';
+require_once 'MapperCreatorService.php';
 
 class ZendModelCreator2 {
 
@@ -191,8 +191,8 @@ class ZendModelCreator2 {
 								$this->_data[$table]['entity'] = $EntityService->createEntity($table,$data);
 								break;
 							case "create_mapper":
-								//$MapperService = new MapperCreatorService();
-								//$this->_data[$table]['mapper'] = $MapperService->createMapper($table,$data);
+								$MapperService = new MapperCreatorService();
+								$this->_data[$table]['mapper'] = $MapperService->createMapper($table,$data);
 								break;
 							default:
 								die("Settings not set correctly. [types]");
