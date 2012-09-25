@@ -11,13 +11,6 @@
 class ServiceCreatorService {
 
     private $_data = '';
-
-    public static $STRING = 'string';
-    public static $INTEGER = 'integer';
-    public static $DATETIME = 'datetime';
-    public static $DATE = 'date';
-	public static $ARRAY = 'array';
-	public static $DOUBLE = 'double';
 	private $_primary_key = '';
 
 	/**
@@ -36,7 +29,6 @@ class ServiceCreatorService {
 		$this->_generateUpdate($className);
 		$this->_generateDelete($className);
 		$this->_generateClassFooter();
-		print_r($this->_data);exit;
 		return $this->_data;
 	}
 
@@ -54,23 +46,19 @@ class ServiceCreatorService {
 	private function _generateClassHeader($className) {
 		$this->_data .= "<?php
 /**
-* file: $className.php
-* $className Service
+* file: " . ucfirst(strtolower($className)) . ".php
+* " . ucfirst(strtolower($className)) . " Service
 *
 * @author ".ZendModelCreator2::getGenerator()."
 * @version ".ZendModelCreator2::getVersion()."
 * @package ".ZendModelCreator2::getNamespace()."
-* @since " . date("Y-m-d") . "
 * @package ".ZendModelCreator2::getNamespace()."
+* @since " . date("Y-m-d") . "
 */
 
-namespace ".ZendModelCreator2::getNamespace()."\Mapper;
+namespace ".ZendModelCreator2::getNamespace()."\Service;
 
 use ArrayObject;
-
-use ".ZendModelCreator2::getNamespace()."\Entity\\" . $className . ";
-
-namespace ".ZendModelCreator2::getNamespace()."\Service;
 
 use ".ZendModelCreator2::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
 use ".ZendModelCreator2::getNamespace()."\Service\\" . $className . "Event;
@@ -81,7 +69,7 @@ use Zend\EventManager\EventManagerAwareInterface;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 /**
-* " . $className . "
+* " . ucfirst(strtolower($className)) . "
 *
 * @author ".ZendModelCreator2::getGenerator()."
 * @version ".ZendModelCreator2::getVersion()."
@@ -89,10 +77,10 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $className . " implements EventManagerAwareInterface
+class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterface
 {
-    protected $mapper;
-    protected $options;
+    protected \$mapper;
+    protected \$options;
 ";
 	}
 
@@ -109,7 +97,7 @@ class " . $className . " implements EventManagerAwareInterface
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t\// Create event manager instance\n";
 		$this->_data.="\t\t\$this->setEventManager(new EventManager());\n";
-		$this->_data.="\t}\n\n";        
+		$this->_data.="\t}\n\n";
 	}
 
 	/**
@@ -132,7 +120,6 @@ class " . $className . " implements EventManagerAwareInterface
 
         
 	}
-
 
 	/**
 	 * Generates findAll

@@ -11,13 +11,6 @@
 class MapperCreatorService {
 
     private $_data = '';
-
-    public static $STRING = 'string';
-    public static $INTEGER = 'integer';
-    public static $DATETIME = 'datetime';
-    public static $DATE = 'date';
-	public static $ARRAY = 'array';
-	public static $DOUBLE = 'double';
 	private $_primary_key = '';
 
 	/**
@@ -52,14 +45,14 @@ class MapperCreatorService {
 	private function _generateClassHeader($className) {
 		$this->_data .= "<?php
 /**
-* file: $className.php
-* $className mapper
+* file: ".$className."Mapper.php
+* " . ucfirst(strtolower($className)) . " mapper
 *
 * @author ".ZendModelCreator2::getGenerator()."
 * @version ".ZendModelCreator2::getVersion()."
 * @package ".ZendModelCreator2::getNamespace()."
-* @since " . date("Y-m-d") . "
 * @package ".ZendModelCreator2::getNamespace()."
+* @since " . date("Y-m-d") . "
 */
 
 namespace ".ZendModelCreator2::getNamespace()."\Mapper;
@@ -78,7 +71,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use ZfcBase\Mapper\AbstractDbMapper;
 
 /**
-* " . $className . "Mapper
+* " . ucfirst(strtolower($className)) . "Mapper
 *
 * @author ".ZendModelCreator2::getGenerator()."
 * @version ".ZendModelCreator2::getVersion()."
@@ -86,7 +79,7 @@ use ZfcBase\Mapper\AbstractDbMapper;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $className . "Mapper extends AbstractDbMapper
+class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 {
 ";
 	}

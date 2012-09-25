@@ -9,6 +9,7 @@
 require_once 'EntityCreatorService.php';
 require_once 'MapperCreatorService.php';
 require_once 'ServiceCreatorService.php';
+require_once 'EventCreatorService.php';
 
 class ZendModelCreator2 {
 
@@ -48,7 +49,7 @@ class ZendModelCreator2 {
 
 		// Set the namespace, if it should change
 		if ($settings['namespace'] != '') {
-			$this->_namespace = $settings['namespace'];
+			self::$_namespace = $settings['namespace'];
 		}
 
 		// Open db connection
@@ -198,8 +199,8 @@ class ZendModelCreator2 {
 							case "create_service":
 								$serviceCreator = new ServiceCreatorService();
 								$this->_data[$table]['service'] = $serviceCreator->createService($table, $data);
-								//$EventService = new EventCreatorService();
-								//$this->_data[$table]['service_event'] = $EventService->createEventService($table, $data);
+								$EventService = new EventCreatorService();
+								$this->_data[$table]['service_event'] = $EventService->createEventService($table, $data);
 								break;
 							default:
 								die("Settings not set correctly. [types]");
