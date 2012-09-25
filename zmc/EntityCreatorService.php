@@ -61,7 +61,8 @@ namespace ".ZendModelCreator2::getNamespace()."\Entity;
 * @since " . date("Y-m-d") . "
 *
 **/
-class $className {
+class $className
+{
 ";
 	}
 

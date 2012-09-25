@@ -86,7 +86,8 @@ use ZfcBase\Mapper\AbstractDbMapper;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $className . "Mapper extends AbstractDbMapper {
+class " . $className . "Mapper extends AbstractDbMapper
+{
 ";
 	}
 
@@ -130,7 +131,7 @@ class " . $className . "Mapper extends AbstractDbMapper {
 	}
 
 	/**
-	 * Generates findById
+	 * Generates findAll
 	 *
 	 */
 	private function _generateFindAll($className) {
@@ -199,7 +200,7 @@ class " . $className . "Mapper extends AbstractDbMapper {
 		$this->_data.="\t\t\$sql->prepareStatement(\$adapter, \$statement);\n";
 		$this->_data.="\t\t\$result = \$statement->execute();\n";
 		$this->_data.="\t\treturn \$result;\n";
-		$this->_data.="\t}\n\n";
+		$this->_data.="\t}\n";
 	}
 
 	/**

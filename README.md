@@ -9,7 +9,7 @@ Zend Model Creator is a generator for quick prototyping of your Zend Project.
 If you are not keen on using pure ORM's like Doctrine, this might be something for you.
 
 Out of the box, Zend Model Creator works with Zend\Db and generates Entities, Mappers
-and Services based on your database structure.
+and event aware Services based on your database structure.
 
 This project is manly used to avoid the time spent on creating models for
 your Zend Framework projects.
