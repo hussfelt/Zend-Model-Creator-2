@@ -2,7 +2,7 @@
 /**
 * Code generator for Entity class
 *
-* @author HHenrik Hussfelt
+* @author Henrik Hussfelt
 * @copyright	Copyright (C) 2012 Hussfelt Consulting AB. All rights reserved.
 * @license		SEE LICENCE
 *
@@ -28,8 +28,10 @@ class EntityCreatorService {
 	public function createEntity($className, $parameterArray) {
 		$this->_generateClassHeader($className);
 		$this->_generateClassDeclarations($parameterArray['fields']);
-		//$this->_generateClassGettersSetters($parameterArray['fields']);
+		$this->_generateClassGettersSetters($parameterArray['fields']);
 		$this->_generateClassFooter();
+		print_r($this->_data);
+		exit;
 		return $this->_data;
 	}
 
@@ -116,6 +118,114 @@ class $className {
 			}
 		}
 		$this->_data .= "\n";
+	}
+
+	/**
+	* Generate comment for get method
+	*
+	*/
+	private function _getGetComment($type, $name) {
+		$data = "\t/**\n";
+		$data .= "\t* Gets the $name property\n";
+		$data .= "\t* @return $type the $name\n";
+		$data .= "\t*/\n";
+		return $data;
+	}
+
+	/**
+	* Generate comment for set method
+	*
+	*/
+	private function _getSetComment($type, $name) {
+		$data = "\t/**\n";
+		$data .= "\t* Sets the $name property\n";
+		$data .= "\t* @param $type the $name to set\n";
+		$data .= "\t* @return void\n";
+		$data .= "\t*/\n";
+		return $data;
+	}
+
+	/**
+	* Generate getters and setters used in the entity class
+	*
+	*/
+	private function _generateClassGettersSetters($params) {
+		foreach ($params as $param) {
+			foreach ($param as $name => $type) {
+				switch ($type[0]) {
+					case self::$STRING:
+						$this->_data .= $this->_getGetComment($type[0], $name);
+						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\treturn \$this->$name;";
+						$this->_data .= "\n\t}\n\n";
+
+						$this->_data .= $this->_getSetComment($type[0], $name);
+						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\t\$this->$name = \$$name;";
+						$this->_data .= "\n\t}\n\n";
+						break;
+
+					case self::$INTEGER:
+						$this->_data .= $this->_getGetComment($type[0], $name);
+						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\treturn \$this->$name;";
+						$this->_data .= "\n\t}\n\n";
+
+						$this->_data .= $this->_getSetComment($type[0], $name);
+						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\t\$this->$name = \$$name;";
+						$this->_data .= "\n\t}\n\n";
+						break;
+
+					case self::$DATETIME:
+						$this->_data .= $this->_getGetComment($type[0], $name);
+						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\treturn \$this->$name;";
+						$this->_data .= "\n\t}\n\n";
+
+						$this->_data .= $this->_getSetComment($type[0], $name);
+						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\t\$this->$name = \$$name;";
+						$this->_data .= "\n\t}\n\n";
+						break;
+
+					case self::$DOUBLE:
+						$this->_data .= $this->_getGetComment($type[0], $name);
+						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\treturn \$this->$name;";
+						$this->_data .= "\n\t}\n\n";
+
+						$this->_data .= $this->_getSetComment($type[0], $name);
+						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\t\$this->$name = \$$name;";
+						$this->_data .= "\n\t}\n\n";
+						break;
+
+					case self::$ARRAY:
+						$this->_data .= $this->_getGetComment($type[0], $name);
+						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\treturn \$this->$name;";
+						$this->_data .= "\n\t}\n\n";
+
+						$this->_data .= $this->_getSetComment($type[0], $name);
+						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(array \$$name)\n";
+						$this->_data .= "\t{\n";
+						$this->_data .= "\t\t\$this->$name = \$$name;";
+						$this->_data .= "\n\t}\n\n";
+						break;
+
+				}
+			}
+		}
 	}
 
 	/**
