@@ -43,21 +43,21 @@ class EntityCreatorService {
 * file: " . ucfirst(strtolower($className)) . ".php
 * " . ucfirst(strtolower($className)) . " entity
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
-* @package ".ZendModelCreator2::getNamespace()."
+* @package ".ZendModelCreator::getNamespace()."
 */
 
-namespace ".ZendModelCreator2::getNamespace()."\Entity;
+namespace ".ZendModelCreator::getNamespace()."\Entity;
 
 /**
 * " . ucfirst(strtolower($className)) . "
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
 *
 **/
@@ -153,13 +153,13 @@ class " . ucfirst(strtolower($className)) . "
 				switch ($type[0]) {
 					case self::$STRING:
 						$this->_data .= $this->_getGetComment($type[0], $name);
-						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\tpublic function get".ZendModelCreator::toCamelCase($name)."()\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\treturn \$this->$name;";
 						$this->_data .= "\n\t}\n\n";
 
 						$this->_data .= $this->_getSetComment($type[0], $name);
-						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\tpublic function set".ZendModelCreator::toCamelCase($name)."(\$$name)\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\t\$this->$name = \$$name;";
 						$this->_data .= "\n\t}\n\n";
@@ -167,13 +167,13 @@ class " . ucfirst(strtolower($className)) . "
 
 					case self::$INTEGER:
 						$this->_data .= $this->_getGetComment($type[0], $name);
-						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\tpublic function get".ZendModelCreator::toCamelCase($name)."()\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\treturn \$this->$name;";
 						$this->_data .= "\n\t}\n\n";
 
 						$this->_data .= $this->_getSetComment($type[0], $name);
-						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\tpublic function set".ZendModelCreator::toCamelCase($name)."(\$$name)\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\t\$this->$name = \$$name;";
 						$this->_data .= "\n\t}\n\n";
@@ -181,13 +181,13 @@ class " . ucfirst(strtolower($className)) . "
 
 					case self::$DATETIME:
 						$this->_data .= $this->_getGetComment($type[0], $name);
-						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\tpublic function get".ZendModelCreator::toCamelCase($name)."()\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\treturn \$this->$name;";
 						$this->_data .= "\n\t}\n\n";
 
 						$this->_data .= $this->_getSetComment($type[0], $name);
-						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\tpublic function set".ZendModelCreator::toCamelCase($name)."(\$$name)\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\t\$this->$name = \$$name;";
 						$this->_data .= "\n\t}\n\n";
@@ -195,13 +195,13 @@ class " . ucfirst(strtolower($className)) . "
 
 					case self::$DOUBLE:
 						$this->_data .= $this->_getGetComment($type[0], $name);
-						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\tpublic function get".ZendModelCreator::toCamelCase($name)."()\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\treturn \$this->$name;";
 						$this->_data .= "\n\t}\n\n";
 
 						$this->_data .= $this->_getSetComment($type[0], $name);
-						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(\$$name)\n";
+						$this->_data .= "\tpublic function set".ZendModelCreator::toCamelCase($name)."(\$$name)\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\t\$this->$name = \$$name;";
 						$this->_data .= "\n\t}\n\n";
@@ -209,13 +209,13 @@ class " . ucfirst(strtolower($className)) . "
 
 					case self::$ARRAY:
 						$this->_data .= $this->_getGetComment($type[0], $name);
-						$this->_data .= "\tpublic function get".ZendModelCreator2::toCamelCase($name)."()\n";
+						$this->_data .= "\tpublic function get".ZendModelCreator::toCamelCase($name)."()\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\treturn \$this->$name;";
 						$this->_data .= "\n\t}\n\n";
 
 						$this->_data .= $this->_getSetComment($type[0], $name);
-						$this->_data .= "\tpublic function set".ZendModelCreator2::toCamelCase($name)."(array \$$name)\n";
+						$this->_data .= "\tpublic function set".ZendModelCreator::toCamelCase($name)."(array \$$name)\n";
 						$this->_data .= "\t{\n";
 						$this->_data .= "\t\t\$this->$name = \$$name;";
 						$this->_data .= "\n\t}\n\n";

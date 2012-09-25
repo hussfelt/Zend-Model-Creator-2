@@ -33,8 +33,8 @@ $SETTINGS['types']['create_service'] = (isset($options['without-service']) && $o
 $SETTINGS['namespace'] = (isset($options['namespace']) ? $options['namespace'] : '');
 
 // Setup the model creator service with our specified settings
-require_once 'zmc/zmc2.php';
-$zmc = new ZendModelCreator2($SETTINGS);
+require_once 'zmc/ZendModelCreator.php';
+$zmc = new ZendModelCreator($SETTINGS);
 
 // Generate our data
 $zmc->getDataFromServices();

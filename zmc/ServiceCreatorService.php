@@ -49,19 +49,19 @@ class ServiceCreatorService {
 * file: " . ucfirst(strtolower($className)) . ".php
 * " . ucfirst(strtolower($className)) . " Service
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
 */
 
-namespace ".ZendModelCreator2::getNamespace()."\Service;
+namespace ".ZendModelCreator::getNamespace()."\Service;
 
 use ArrayObject;
 
-use ".ZendModelCreator2::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
-use ".ZendModelCreator2::getNamespace()."\Service\\" . $className . "Event;
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
+use ".ZendModelCreator::getNamespace()."\Service\\" . $className . "Event;
 
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerInterface;
@@ -71,9 +71,9 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 /**
 * " . ucfirst(strtolower($className)) . "
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
 *
 **/
@@ -110,7 +110,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t* Find a record by id\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param int \$id\n";
-		$this->_data.="\t* @return object ".ZendModelCreator2::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findById(\$id)\n";
 		$this->_data.="\t{\n";
@@ -130,7 +130,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return array objects ".ZendModelCreator2::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
@@ -149,7 +149,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t* Create a record\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param array/object \$" . strtolower($className) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator2::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function create(\$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
@@ -183,7 +183,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t* Update a record\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param array/object \$" . strtolower($className) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator2::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function update(\$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
@@ -222,7 +222,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// If the variable \$" . strtolower($className) . " is an instance of " . ucfirst(strtolower($className)) . "Entity, get the " . $this->_primary_key . " out of the object\n";
 		$this->_data.="\t\tif (\$" . strtolower($className) . " instanceof " . ucfirst(strtolower($className)) . "Entity) {\n";
-		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$" . strtolower($className) . "->get" . ZendModelCreator2::toCamelCase($this->_primary_key) . "();\n";
+		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "();\n";
 		$this->_data.="\t\t}\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Return the result of deleting the record\n";

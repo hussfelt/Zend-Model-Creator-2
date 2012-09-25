@@ -38,26 +38,26 @@ class EventCreatorService {
 * file: " . ucfirst(strtolower($className)) . "Event.php
 * " . ucfirst(strtolower($className)) . " Event
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
 */
 
-namespace ".ZendModelCreator2::getNamespace()."\Service;
+namespace ".ZendModelCreator::getNamespace()."\Service;
 
 use ArrayObject;
 
-use ".ZendModelCreator2::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
 
 use Zend\EventManager\Event;
 
 /**
 * " . ucfirst(strtolower($className)) . "Event
 *
-* @author ".ZendModelCreator2::getGenerator()."
-* @version ".ZendModelCreator2::getVersion()."
-* @package ".ZendModelCreator2::getNamespace()."
+* @author ".ZendModelCreator::getGenerator()."
+* @version ".ZendModelCreator::getVersion()."
+* @package ".ZendModelCreator::getNamespace()."
 * @since " . date("Y-m-d") . "
 *
 **/

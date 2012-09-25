@@ -11,7 +11,7 @@ require_once 'MapperCreatorService.php';
 require_once 'ServiceCreatorService.php';
 require_once 'EventCreatorService.php';
 
-class ZendModelCreator2 {
+class ZendModelCreator {
 
 	// Settings
 	private $_settings = array();
@@ -158,14 +158,14 @@ class ZendModelCreator2 {
 
 				// get the datetype of the column and set a proper DTO type
 				if(stristr($type, "int")) {
-					$type = ZendModelCreator2::$INTEGER;
+					$type = ZendModelCreator::$INTEGER;
 				} elseif(stristr($type, "date")) {
-					$type = ZendModelCreator2::$DATETIME;
+					$type = ZendModelCreator::$DATETIME;
 				} elseif(stristr($type, "double")) {
-					$type = ZendModelCreator2::$DOUBLE;
+					$type = ZendModelCreator::$DOUBLE;
 				} else {
 					// everything else
-					$type = ZendModelCreator2::$STRING;
+					$type = ZendModelCreator::$STRING;
 				}
 
 				// set to global table
