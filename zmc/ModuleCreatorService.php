@@ -24,6 +24,7 @@ class ModuleCreatorService {
 		$this->_generateAutoloaderConfig();
 		$this->_generateGetConfig();
 		$this->_generateOnBootstrap();
+		$this->_generateClassFooter();
 		return $this->_data;
 	}
 
@@ -44,7 +45,7 @@ class ModuleCreatorService {
 * @since " . date("Y-m-d") . "
 */
 
-namespace CioBase;
+namespace ".ZendModelCreator::getNamespace().";
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
@@ -128,7 +129,7 @@ class Module implements AutoloaderProviderInterface
 		$this->_data.="\t\t\t'Zend\Loader\StandardAutoloader' => array(\n";
 		$this->_data.="\t\t\t\t'namespaces' => array(\n";
 		$this->_data.="\t\t\t\t\t// if we're in a namespace deeper than one level we need to fix the \ in the path\n";
-		$this->_data.="\t\t\t\t\t__NAMESPACE__ => __DIR__ . '/src/' . str_replace('\\', '/' , __NAMESPACE__),\n";
+		$this->_data.="\t\t\t\t\t__NAMESPACE__ => __DIR__ . '/src/' . str_replace('\\\\', '/' , __NAMESPACE__),\n";
 		$this->_data.="\t\t\t\t),\n";
 		$this->_data.="\t\t\t),\n";
 		$this->_data.="\t\t);\n";
@@ -163,7 +164,7 @@ class Module implements AutoloaderProviderInterface
 		$this->_data.="\t\t\$eventManager = \$e->getApplication()->getEventManager();\n";
 		$this->_data.="\t\t\$moduleRouteListener = new ModuleRouteListener();\n";
 		$this->_data.="\t\t\$moduleRouteListener->attach(\$eventManager);\n";
-		$this->_data.="\t}\n\n";
+		$this->_data.="\t}\n";
 	}
 
 	/**

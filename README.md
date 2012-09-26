@@ -62,5 +62,8 @@ Will not generate the autoloader files
 `--without-config=1`
 Will not generate the config file
 
+`--without-options=1`
+Will not generate the options file
+
 `--namespace=[NAMESPACE]`
 Will generate your data into a given Namespace and not use ZMC2
