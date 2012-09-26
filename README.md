@@ -59,5 +59,8 @@ Will not generate the Module.php file
 `--without-autoloaders=1`
 Will not generate the autoloader files
 
+`--without-config=1`
+Will not generate the config file
+
 `--namespace=[NAMESPACE]`
 Will generate your data into a given Namespace and not use ZMC2

@@ -183,6 +183,7 @@ class ZendModelCreator {
 	public function getDataFromServices() {
 		$createModule = false;
 		$createAutoloaders = false;
+		$createConfig = false;
 		foreach (self::$tables as $table => $data) {
 			// clean interface array
 			foreach ($this->getSetting('types') as $type => $get_data) {
@@ -212,6 +213,9 @@ class ZendModelCreator {
 							case "create_autoloaders":
 								$createAutoloaders = true;
 								break;
+							case "create_config":
+								$createAutoloaders = true;
+								break;
 							default:
 								die("Settings not set correctly. [types]");
 								break;
@@ -227,12 +231,25 @@ class ZendModelCreator {
 			$this->_files['module'] = $moduleCreator->createModule($table, self::$tables);
 		}
 
+		// Check if we want to create the config
+		if ($createConfig) {
+			// Build config file
+			$this->_files['config'] = "<?php\n";
+			$this->_files['config'] .= "return array(\n";
+			$this->_files['config'] .= "\t'service_manager' => array(\n";
+			$this->_files['config'] .= "\t\t'aliases' => array(\n";
+			$this->_files['config'] .= "\t\t\t'" . strtolower(self::getNamespace()) . "_zend_db_adapter' => 'Zend\Db\Adapter\Adapter',\n";
+			$this->_files['config'] .= "\t\t')\n";
+			$this->_files['config'] .= "\t')\n";
+			$this->_files['config'] .= ");";
+		}
+
 		// Check if we want to create autoloaders
 		if ($createAutoloaders) {
 			// Build classmap file
 			$this->_files['classmap'] = "<?php\n";
 			$this->_files['classmap'] .= "return array(\n";
-			$this->_files['classmap'] .= "\t" . ZendModelCreator::getNamespace() . "\Module' => __DIR__ . '/Module.php','\n";
+			$this->_files['classmap'] .= "\t'" . ZendModelCreator::getNamespace() . "\Module' => __DIR__ . '/Module.php',\n";
 			$this->_files['classmap'] .= ");";
 
 			// Build function file

@@ -32,6 +32,7 @@ $SETTINGS['types']['create_mapper'] = (isset($options['without-mapper']) && $opt
 $SETTINGS['types']['create_service'] = (isset($options['without-service']) && $options['without-service'] == '1' ? false : true);
 $SETTINGS['types']['create_module'] = (isset($options['without-module']) && $options['without-module'] == '1' ? false : true);
 $SETTINGS['types']['create_autoloaders'] = (isset($options['without-autoloaders']) && $options['without-autoloaders'] == '1' ? false : true);
+$SETTINGS['types']['create_config'] = (isset($options['without-config']) && $options['without-config'] == '1' ? false : true);
 $SETTINGS['namespace'] = (isset($options['namespace']) ? $options['namespace'] : '');
 
 // Setup the model creator service with our specified settings
