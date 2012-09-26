@@ -20,6 +20,7 @@ class ZendModelCreator {
 	private $_dbcon = null;
 	// data
 	private $_data = array();
+	private $_files = array();
 
 	// Version of ZMC2
 	private static $_version = '0.5';
@@ -181,6 +182,7 @@ class ZendModelCreator {
 	*/
 	public function getDataFromServices() {
 		$createModule = false;
+		$createAutoloaders = false;
 		foreach (self::$tables as $table => $data) {
 			// clean interface array
 			foreach ($this->getSetting('types') as $type => $get_data) {
@@ -207,6 +209,9 @@ class ZendModelCreator {
 							case "create_module":
 								$createModule = true;
 								break;
+							case "create_autoloaders":
+								$createAutoloaders = true;
+								break;
 							default:
 								die("Settings not set correctly. [types]");
 								break;
@@ -219,7 +224,33 @@ class ZendModelCreator {
 		// Check if we want to create the module
 		if ($createModule) {
 			$moduleCreator = new ModuleCreatorService();
-			$this->_data[$table]['module'] = $moduleCreator->createModule($table, self::$tables);
+			$this->_files['module'] = $moduleCreator->createModule($table, self::$tables);
+		}
+
+		// Check if we want to create autoloaders
+		if ($createAutoloaders) {
+			// Build classmap file
+			$this->_files['classmap'] = "<?php\n";
+			$this->_files['classmap'] .= "return array(\n";
+			$this->_files['classmap'] .= "\t" . ZendModelCreator::getNamespace() . "\Module' => __DIR__ . '/Module.php','\n";
+			$this->_files['classmap'] .= ");";
+
+			// Build function file
+			$this->_files['function'] = "<?php\n";
+			$this->_files['function'] .= "return function (\$class) {\n";
+			$this->_files['function'] .= "\tstatic \$map;\n";
+			$this->_files['function'] .= "\tif (!\$map) {\n";
+			$this->_files['function'] .= "\t\t\$map = include __DIR__ . '/autoload_classmap.php';\n";
+			$this->_files['function'] .= "\t}\n";
+			$this->_files['function'] .= "\tif (!isset(\$map[\$class])) {\n";
+			$this->_files['function'] .= "\t\treturn false;\n";
+			$this->_files['function'] .= "\t}\n";
+			$this->_files['function'] .= "\treturn include \$map[\$class];\n";
+			$this->_files['function'] .= "};\n";
+
+			// Build register file
+			$this->_files['register'] = "<?php\n";
+			$this->_files['register'] .= "spl_autoload_register(include __DIR__ . '/autoload_function.php');";
 		}
 	}
 }

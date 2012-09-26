@@ -22,11 +22,12 @@ Requirements
 Features / Goals
 ----------------
 
-* Generate Entities [INCOMPLETE]
-* Generate Mappers [INCOMPLETE]
-* Generate Event Aware Services [INCOMPLETE]
-* Generate EventServices [INCOMPLETE]
-* Generate Module.php [INCOMPLETE]
+* Generate Entities [COMPLETE]
+* Generate Mappers [COMPLETE]
+* Generate Event Aware Services [COMPLETE]
+* Generate EventServices [COMPLETE]
+* Generate Module.php [COMPLETE]
+* Generate autoloader files [INCOMPLETE]
 
 Installation
 ------------
@@ -54,6 +55,9 @@ Will not generate the services
 
 `--without-module=1`
 Will not generate the Module.php file
+
+`--without-autoloaders=1`
+Will not generate the autoloader files
 
 `--namespace=[NAMESPACE]`
 Will generate your data into a given Namespace and not use ZMC2
