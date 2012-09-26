@@ -27,7 +27,7 @@ Features / Goals
 * Generate Event Aware Services [COMPLETE]
 * Generate EventServices [COMPLETE]
 * Generate Module.php [COMPLETE]
-* Generate autoloader files [INCOMPLETE]
+* Generate autoloader files [COMPLETE]
 
 Installation
 ------------
