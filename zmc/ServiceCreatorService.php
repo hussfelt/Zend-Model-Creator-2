@@ -95,7 +95,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function __construct()\n";
 		$this->_data.="\t{\n";
-		$this->_data.="\t\t\// Create event manager instance\n";
+		$this->_data.="\t\t// Create event manager instance\n";
 		$this->_data.="\t\t\$this->setEventManager(new EventManager());\n";
 		$this->_data.="\t}\n\n";
 	}
@@ -224,6 +224,12 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t\tif (\$" . strtolower($className) . " instanceof " . ucfirst(strtolower($className)) . "Entity) {\n";
 		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "();\n";
 		$this->_data.="\t\t}\n";
+		$this->_data.="\n";
+		$this->_data.="\t\t// Ge the event manager\n";
+		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
+		$this->_data.="\n";
+		$this->_data.="\t\t// Trigger event for deleting a record\n";
+		$this->_data.="\t\t\$events->trigger(" . ucfirst(strtolower($className)) . "Event::EVENT_DELETE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Return the result of deleting the record\n";
 		$this->_data.="\t\treturn \$this->mapper->delete(\$" . strtolower($className) . ");\n";
