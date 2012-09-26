@@ -11,6 +11,7 @@
 class EntityCreatorService {
 
     private $_data = '';
+    private $_primary_key = '';
 
     public static $STRING = 'string';
     public static $INTEGER = 'integer';
@@ -26,11 +27,19 @@ class EntityCreatorService {
 	 *
 	 */
 	public function createEntity($className, $parameterArray) {
+		$this->_setPrimaryKey($parameterArray['primary_key']);
 		$this->_generateClassHeader($className);
 		$this->_generateClassDeclarations($parameterArray['fields']);
 		$this->_generateClassGettersSetters($parameterArray['fields']);
 		$this->_generateClassFooter();
 		return $this->_data;
+	}
+
+	/**
+	* Set primary key
+	*/
+	private function _setPrimaryKey($primary_key) {
+		$this->_primary_key = $primary_key;
 	}
 
 	/**
@@ -84,7 +93,8 @@ class " . ucfirst(strtolower($className)) . "
 						$this->_data .= "\t/**\n";
 						$this->_data .= "\t* @var int". "\n";
 						$this->_data .= "\t**/\n";
-						$this->_data .= "\tprotected \$" . $name . " = " . ($data[1] != "" ? $data[1] : 0) . ";\n";
+						$intData = ($name == $this->_primary_key ? '' : " = " . ($data[1] != "" ? $data[1] : 0) );
+						$this->_data .= "\tprotected \$" . $name . $intData . ";\n";
 						break;
 					case self::$DATETIME:
 						$this->_data .= "\t/**\n";

@@ -70,7 +70,8 @@ class " . ucfirst(strtolower($className)) . " extends Event
 	*/
 	private function _generateConstants($className) {
 		$this->_data.="\tconst EVENT_ADD_" . strtoupper($className) . "_POST = 'add" . ucfirst(strtolower($className)) . ".post';\n";
-		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'add" . ucfirst(strtolower($className)) . ".post';\n";
+		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'update" . ucfirst(strtolower($className)) . ".post';\n";
+		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($className) . "_POST = 'delete" . ucfirst(strtolower($className)) . ".post';\n";
 		$this->_data.="\n";
 	}
 
