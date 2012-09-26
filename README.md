@@ -1,6 +1,6 @@
 Zend Model Creator 2
 =======
-Version 0.5 Created by Henrik Hussfelt
+Version 0.0.1 Created by Henrik Hussfelt
 
 Introduction
 ------------

@@ -24,7 +24,7 @@ class ZendModelCreator {
 	private $_files = array();
 
 	// Version of ZMC2
-	private static $_version = '0.5';
+	private static $_version = '0.0.1';
 	// Generator string
 	private static $_generator = 'Zend Model Creator 2, [https://github.com/hussfelt/Zend-Model-Creator-2]';
 	// Namespace
