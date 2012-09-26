@@ -10,6 +10,7 @@ require_once 'EntityCreatorService.php';
 require_once 'MapperCreatorService.php';
 require_once 'ServiceCreatorService.php';
 require_once 'EventCreatorService.php';
+require_once 'ModuleCreatorService.php';
 
 class ZendModelCreator {
 
@@ -73,7 +74,7 @@ class ZendModelCreator {
 	* @param 	string $str String in camel case format
 	* @return 	string $str Translated into underscore format
 	*/
-	function from_camel_case($str) {
+	function fromCamelCase($str) {
 		$str[0] = strtolower($str[0]);
 		$func = create_function('$c', 'return "_" . strtolower($c[1]);');
 		return preg_replace_callback('/([A-Z])/', $func, $str);
@@ -179,6 +180,7 @@ class ZendModelCreator {
 	* Get generated data from our services
 	*/
 	public function getDataFromServices() {
+		$createModule = false;
 		foreach (self::$tables as $table => $data) {
 			// clean interface array
 			foreach ($this->getSetting('types') as $type => $get_data) {
@@ -202,6 +204,9 @@ class ZendModelCreator {
 								$EventService = new EventCreatorService();
 								$this->_data[$table]['service_event'] = $EventService->createEventService($table, $data);
 								break;
+							case "create_module":
+								$createModule = true;
+								break;
 							default:
 								die("Settings not set correctly. [types]");
 								break;
@@ -209,6 +214,12 @@ class ZendModelCreator {
 					}
 				}
 			}
+		}
+
+		// Check if we want to create the module
+		if ($createModule) {
+			$moduleCreator = new ModuleCreatorService();
+			$this->_data[$table]['module'] = $moduleCreator->createModule($table, self::$tables);
 		}
 	}
 }

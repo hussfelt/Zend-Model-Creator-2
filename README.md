@@ -52,5 +52,8 @@ Will not generate mapper
 `--without-service=1`
 Will not generate the services
 
+`--without-module=1`
+Will not generate the Module.php file
+
 `--namespace=[NAMESPACE]`
 Will generate your data into a given Namespace and not use ZMC2

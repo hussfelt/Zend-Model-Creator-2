@@ -24,7 +24,6 @@ class EventCreatorService {
 		$this->_generateGet($className);
 		$this->_generateSet($className);
 		$this->_generateClassFooter();
-		print_r($this->_data);exit;
 		return $this->_data;
 	}
 
