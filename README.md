@@ -30,6 +30,9 @@ Features / Goals
 * Generate EventServices [COMPLETE]
 * Generate Module.php [COMPLETE]
 * Generate autoloader files [COMPLETE]
+* Generate Add Forms [INCOMPLETE]
+* Generate Edit Forms [INCOMPLETE]
+* Generate FormFilters [INCOMPLETE]
 
 Installation
 ------------
