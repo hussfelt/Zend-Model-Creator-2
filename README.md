@@ -49,13 +49,15 @@ Run with php:
 
 1. Move your [NAMESPACE] directory into the /vendor/ directory
 2. Add [NAMESPACE] to your application.config.php:
-``return array(
+```php
+return array(
     'modules' => array(
         'ZfcBase',
         '[NAMESPACE_HERE]',
         'Application',
     ),
-);``
+);
+```
 
 Options
 -------
