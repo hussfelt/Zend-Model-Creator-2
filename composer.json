@@ -15,6 +15,10 @@
             "homepage": "http://hussfelt.net/"
         }
     ],
+    "suggest": {
+        "zendframework/zendframework": "2.*",
+        "zf-commons/zfc-base": "dev-master"
+    },
     "require": {
         "php": ">=5.3.3"
     }
