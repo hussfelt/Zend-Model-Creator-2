@@ -56,7 +56,7 @@ use Zend\Stdlib\AbstractOptions;
 * @since " . date("Y-m-d") . "
 *
 **/
-class Module extends AbstractOptions
+class ModuleOptions extends AbstractOptions
 {
     protected \$__strictMode__ = false;
     protected \$hydrateResultsByDefault = true;
