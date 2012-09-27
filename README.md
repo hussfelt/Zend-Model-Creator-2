@@ -18,6 +18,8 @@ Requirements
 ------------
 
 * [PHP5](https://php.net/)
+* Zend Framework 2 - Not needed to generate your models
+* [ZfcBase](https://github.com/ZF-Commons/ZfcBase) - Not needed to generate your models
 
 Features / Goals
 ----------------
@@ -32,6 +34,8 @@ Features / Goals
 Installation
 ------------
 
+**Generate your models**
+
 Clone this repo
 `git clone git@github.com:hussfelt/Zend-Model-Creator-2.git`
 
@@ -40,6 +44,18 @@ cd into your directory
 
 Run with php:
 `php zmc.php --host=[DB_HOST] --db=[DATABASE_NAME] --user=[USERNAME] --password=[PASSWORD]`
+
+**Use them in your ZF project**
+
+1. Move your [NAMESPACE] directory into the /vendor/ directory
+2. Add [NAMESPACE] to your application.config.php:
+`return array(
+    'modules' => array(
+        'ZfcBase',
+        '[NAMESPACE_HERE]',
+        'Application',
+    ),
+);`
 
 Options
 -------
