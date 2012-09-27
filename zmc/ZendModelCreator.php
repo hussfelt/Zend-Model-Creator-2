@@ -333,7 +333,7 @@ class ZendModelCreator {
 		foreach ($this->_data as $table => $data) {
 			// If user specifies that entetie files should be created, do it
 			if($types['create_entity']) {
-				$entityFileName = ucfirst(strtolower($table));
+				$entityFileName = self::toCamelCase(ucfirst(strtolower($table)));
 				// Check if the entity directory exists, else create it
 				if(!is_dir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Entity') && !mkdir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Entity')) {
 					die("Can't create dir: " . self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Entity');
@@ -355,7 +355,7 @@ class ZendModelCreator {
 
 			// If user specifies that mapper files should be created, do it
 			if($types['create_mapper']) {
-				$mapperFileName = ucfirst(strtolower($table));
+				$mapperFileName = self::toCamelCase(ucfirst(strtolower($table)));
 				// Check if the mapper directory exists, else create it
 				if(!is_dir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper') && !mkdir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper')) {
 					die("Can't create dir: " . self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper');
@@ -377,7 +377,7 @@ class ZendModelCreator {
 
 			// If user specifies that service files should be created, do it
 			if($types['create_service']) {
-				$mapperFileName = ucfirst(strtolower($table));
+				$mapperFileName = self::toCamelCase(ucfirst(strtolower($table)));
 				// Check if the service directory exists, else create it
 				if(!is_dir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Service') && !mkdir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Service')) {
 					die("Can't create dir: " . self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Service');

@@ -28,6 +28,13 @@ class ServiceCreatorService {
 		$this->_generateCreate($className);
 		$this->_generateUpdate($className);
 		$this->_generateDelete($className);
+
+		$this->_generateGetMapper($className);
+		$this->_generateSetMapper($className);
+		$this->_generateGetOptions($className);
+		$this->_generateSetOptions($className);
+		$this->_generateGetEventManager($className);
+		$this->_generateSetEventManager($className);
 		$this->_generateClassFooter();
 		return $this->_data;
 	}
@@ -233,6 +240,125 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\n";
 		$this->_data.="\t\t// Return the result of deleting the record\n";
 		$this->_data.="\t\treturn \$this->mapper->delete(\$" . strtolower($className) . ");\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates getMapper
+	 *
+	 */
+	private function _generateGetMapper($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Get the mapper\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @return objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . ucfirst(strtolower($className)) . "Mapper\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function getMapper()\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t// Return mapper\n";
+		$this->_data.="\t\treturn \$this->mapper;\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates setMapper
+	 *
+	 */
+	private function _generateSetMapper($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Set the mapper\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @param objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . ucfirst(strtolower($className)) . "Mapper\n";
+		$this->_data.="\t* @return object \$this\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function setMapper(\$mapper)\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t\$this->mapper = \$mapper;\n";
+		$this->_data.="\t\treturn \$this;\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates getOptions
+	 *
+	 */
+	private function _generateGetOptions($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Get the mapper\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @return array \$options\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function getOptions()\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t// Return options\n";
+		$this->_data.="\t\treturn \$this->options;\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates setOptions
+	 *
+	 */
+	private function _generateSetOptions($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Set the mapper\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @param array \$options\n";
+		$this->_data.="\t* @return object \$this\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function setOptions(\$options)\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t\$this->options = \$options;\n";
+		$this->_data.="\t\treturn \$this;\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates getEventManager
+	 *
+	 */
+	private function _generateGetEventManager($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Get the Event Manager\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @return object EventManager\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function getEventManager()\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t// Return eventManager\n";
+		$this->_data.="\t\treturn \$this->eventManager;\n";
+		$this->_data.="\t}\n\n";
+	}
+
+	/**
+	 * Generates setEventManager
+	 *
+	 */
+	private function _generateSetEventManager($className) {
+		// Set fetch function headers
+		$this->_data.="\t/**\n";
+		$this->_data.="\t* Set the Event Manager\n";
+		$this->_data.="\t*\n";
+		$this->_data.="\t* @param object Zend\EventManager\EventManagerInterface\n";
+		$this->_data.="\t* @return object \$this\n";
+		$this->_data.="\t**/\n";
+		$this->_data.="\tpublic function setEventManager(EventManagerInterface \$eventManager)\n";
+		$this->_data.="\t{\n";
+		$this->_data.="\t\t\$eventManager->setIdentifiers(\n";
+		$this->_data.="\t\t\t__CLASS__,\n";
+		$this->_data.="\t\t\tget_called_class(),\n";
+		$this->_data.="\t\t\t" . strtolower($className) . "\n";
+		$this->_data.="\t\t);\n";
+		$this->_data.="\n";
+		$this->_data.="\t\t\$eventManager->setEventClass('" . ZendModelCreator::getNamespace() . "\Service\\" . ucfirst(strtolower($className)) . "Event');\n";
+		$this->_data.="\n";
+		$this->_data.="\t\t\$this->eventManager = \$eventManager;\n";
+		$this->_data.="\t\treturn \$this;\n";
 		$this->_data.="\t}\n";
 	}
 
