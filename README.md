@@ -18,7 +18,7 @@ Requirements
 ------------
 
 * [PHP5](https://php.net/)
-* Zend Framework 2 - Not needed to generate your models
+* [Zend Framework 2](https://github.com/zendframework/zf2) - Not needed to generate your models
 * [ZfcBase](https://github.com/ZF-Commons/ZfcBase) - Not needed to generate your models
 
 Features / Goals
@@ -101,7 +101,7 @@ Will generate your data into a given Namespace and not use ZMC2
 
 Example usage in Controller
 ---------------------------
-This will replace the IndexController.php in the Zend Framework Skeleton application.
+This will replace the IndexController.php in the [Zend Framework Skeleton application](https://github.com/zendframework/ZendSkeletonApplication).
 Given you have a database-table "album" in your database, this will output all records "Name" from that table.
 
 ***module/Application/src/Application/Controller/IndexController.php:***
