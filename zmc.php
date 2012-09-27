@@ -34,7 +34,7 @@ $SETTINGS['types']['create_module'] = (isset($options['without-module']) && $opt
 $SETTINGS['types']['create_autoloaders'] = (isset($options['without-autoloaders']) && $options['without-autoloaders'] == '1' ? false : true);
 $SETTINGS['types']['create_config'] = (isset($options['without-config']) && $options['without-config'] == '1' ? false : true);
 $SETTINGS['types']['create_options'] = (isset($options['without-options']) && $options['without-options'] == '1' ? false : true);
-$SETTINGS['namespace'] = (isset($options['namespace']) ? $options['namespace'] : '');
+$SETTINGS['namespace'] = (isset($options['namespace']) && $options['namespace'] != '' ? $options['namespace'] : null);
 
 // Setup the model creator service with our specified settings
 require_once 'zmc/ZendModelCreator.php';

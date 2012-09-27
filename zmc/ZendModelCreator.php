@@ -28,7 +28,7 @@ class ZendModelCreator {
 	// Generator string
 	private static $_generator = 'Zend Model Creator 2, [https://github.com/hussfelt/Zend-Model-Creator-2]';
 	// Namespace
-	private static $_namespace = 'Zmc';
+	private static $_namespace = 'ZmcBase';
 
 	// Directory separator
 	public static $_DS = '/';
@@ -51,7 +51,7 @@ class ZendModelCreator {
 		$this->_settings = $settings;
 
 		// Set the namespace, if it should change
-		if ($settings['namespace'] != '') {
+		if ($settings['namespace'] != null) {
 			self::$_namespace = $settings['namespace'];
 		}
 

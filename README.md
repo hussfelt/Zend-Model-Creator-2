@@ -34,7 +34,7 @@ Features / Goals
 Installation
 ------------
 
-**Generate your models**
+**Install via git**
 
 Clone this repo
 `git clone git@github.com:hussfelt/Zend-Model-Creator-2.git`
@@ -42,10 +42,22 @@ Clone this repo
 cd into your directory
 `cd Zend-Model-Creator-2`
 
+**Install via Composer**
+
+Add this to your composer.json under "require":
+`"hussfelt/zend-model-creator-2": "dev-master"`
+
+Run command:
+``php composer.phar update``
+
+Usage
+-----
+
+Cd into the directory (installed with composer):
+``cd vendor/hussfelt/zend-model-creator-2``
+
 Run with php:
 `php zmc.php --host=[DB_HOST] --db=[DATABASE_NAME] --user=[USERNAME] --password=[PASSWORD]`
-
-**Use them in your ZF project**
 
 1. Move your [NAMESPACE] directory into the /vendor/ directory
 2. Add [NAMESPACE] to your application.config.php:
