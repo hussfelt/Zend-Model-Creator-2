@@ -98,3 +98,110 @@ Will not generate the options file
 
 `--namespace=[NAMESPACE]`
 Will generate your data into a given Namespace and not use ZMC2
+
+Example usage in Controller
+---------------------------
+This will replace the IndexController.php in the Zend Framework Skeleton application.
+Given you have a database-table "album" in your database, this will output all records "Name" from that table.
+
+***module/Application/src/Application/Controller/IndexController.php:***
+
+```php
+<?php
+/**
+ * Zend Framework (http://framework.zend.com/)
+ *
+ * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
+ * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license   http://framework.zend.com/license/new-bsd New BSD License
+ */
+
+namespace Application\Controller;
+
+use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
+
+class IndexController extends AbstractActionController
+{
+	protected $albumService;
+	protected $options;
+
+    public function indexAction()
+    {
+        // Get all albums from service
+        $albums = $this->getAlbumService()->findAll();
+        foreach ($albums as $album) {
+            echo $album->getName() . "<br />";
+        }
+        exit;
+    }
+
+    public function getAlbumService()
+    {
+        if (!isset($this->albumService)) {
+            $this->albumService = $this->getServiceLocator()->get('ZmcBase\Service\Album');
+        }
+
+        return $this->albumService;
+    }
+}
+```
+
+Also, you need to fix your global.php and local.php config files if you have not done this yet:
+
+***config/autoload/global.php:***
+
+```php
+<?php
+/**
+ * Global Configuration Override
+ *
+ * You can use this file for overridding configuration values from modules, etc.
+ * You would place values in here that are agnostic to the environment and not
+ * sensitive to security.
+ *
+ * @NOTE: In practice, this file will typically be INCLUDED in your source
+ * control, so do not include passwords or other sensitive information in this
+ * file.
+ */
+
+return array(
+    'db' => array(
+        'driver'         => 'Pdo',
+        'dsn'            => 'mysql:dbname=[YOUR_DATABASE_NAME];host=[YOUR_DB_HOST]',
+        'driver_options' => array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+        ),
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter'
+                    => 'Zend\Db\Adapter\AdapterServiceFactory',
+        ),
+    ),
+);
+```
+
+***config/autoload/local.php:***
+
+```php
+<?php
+/**
+ * Local Configuration Override
+ *
+ * This configuration override file is for overriding environment-specific and
+ * security-sensitive configuration information. Copy this file without the
+ * .dist extension at the end and populate values as needed.
+ *
+ * @NOTE: This file is ignored from Git by default with the .gitignore included
+ * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive
+ * credentials from accidentally being comitted into version control.
+ */
+
+return array(
+    'db' => array(
+        'username' => '[DB_USERNAME]',
+        'password' => '[DB_PASSWORD]',
+    ),
+);
+```
