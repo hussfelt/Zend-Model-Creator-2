@@ -142,7 +142,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Call Mapper and return all records\n";
-		$this->_data.="\t\treturn \$this->mapper->findAll(\$id);\n";
+		$this->_data.="\t\treturn \$this->mapper->findAll();\n";
 		$this->_data.="\t}\n\n";
 	}
 
