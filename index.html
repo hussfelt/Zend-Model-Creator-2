@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Zend Model Creator  by hussfelt</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Zend Model Creator </h1>
+        <p>This project is created to avoid the time spent on creating Entities/Services/Mappers for ZendFramework projects. It is based on some parts of the ZF-Commons team.</p>
+
+        <p class="view"><a href="https://github.com/hussfelt/Zend-Model-Creator-2">View the Project on GitHub <small>hussfelt/Zend-Model-Creator-2</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/hussfelt/Zend-Model-Creator-2/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/hussfelt/Zend-Model-Creator-2/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/hussfelt/Zend-Model-Creator-2">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Zend Model Creator 2</h1>
+
+<p>Version 0.0.1 Created by Henrik Hussfelt</p>
+
+<h2>Introduction</h2>
+
+<p>Zend Model Creator is a generator for quick prototyping of your Zend Project.
+If you are not keen on using pure ORM's like Doctrine, this might be something for you.</p>
+
+<p>Out of the box, Zend Model Creator works with Zend\Db and generates Entities, Mappers
+and event aware Services based on your database structure.</p>
+
+<p>This project is manly used to avoid the time spent on creating models for
+your Zend Framework projects.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li><a href="https://php.net/">PHP5</a></li>
+<li>
+<a href="https://github.com/zendframework/zf2">Zend Framework 2</a> - Not needed to generate your models</li>
+<li>
+<a href="https://github.com/ZF-Commons/ZfcBase">ZfcBase</a> - Not needed to generate your models</li>
+</ul><h2>Features / Goals</h2>
+
+<ul>
+<li>Generate Entities [COMPLETE]</li>
+<li>Generate Mappers [COMPLETE]</li>
+<li>Generate Event Aware Services [COMPLETE]</li>
+<li>Generate EventServices [COMPLETE]</li>
+<li>Generate Module.php [COMPLETE]</li>
+<li>Generate autoloader files [COMPLETE]</li>
+</ul><h2>Installation</h2>
+
+<p><strong>Install via git</strong></p>
+
+<p>Clone this repo
+<code>git clone git@github.com:hussfelt/Zend-Model-Creator-2.git</code></p>
+
+<p>cd into your directory
+<code>cd Zend-Model-Creator-2</code></p>
+
+<p><strong>Install via Composer</strong></p>
+
+<p>Add this to your composer.json under "require":
+<code>"hussfelt/zend-model-creator-2": "dev-master"</code></p>
+
+<p>Run command:
+<code>php composer.phar update</code></p>
+
+<h2>Usage</h2>
+
+<p>Cd into the directory (installed with composer):
+<code>cd vendor/hussfelt/zend-model-creator-2</code></p>
+
+<p>Run with php:
+<code>php zmc.php --host=[DB_HOST] --db=[DATABASE_NAME] --user=[USERNAME] --password=[PASSWORD]</code></p>
+
+<ol>
+<li>Move your [NAMESPACE] directory into the /vendor/ directory</li>
+<li>Add [NAMESPACE] to your application.config.php:</li>
+</ol><div class="highlight"><pre><span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'modules'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'ZfcBase'</span><span class="p">,</span>
+        <span class="s1">'[NAMESPACE_HERE]'</span><span class="p">,</span>
+        <span class="s1">'Application'</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+
+<h2>Options</h2>
+
+<p><code>--without-entity=1</code>
+Will not generate entities</p>
+
+<p><code>--without-mapper=1</code>
+Will not generate mapper</p>
+
+<p><code>--without-service=1</code>
+Will not generate the services</p>
+
+<p><code>--without-module=1</code>
+Will not generate the Module.php file</p>
+
+<p><code>--without-autoloaders=1</code>
+Will not generate the autoloader files</p>
+
+<p><code>--without-config=1</code>
+Will not generate the config file</p>
+
+<p><code>--without-options=1</code>
+Will not generate the options file</p>
+
+<p><code>--namespace=[NAMESPACE]</code>
+Will generate your data into a given Namespace and not use ZMC2</p>
+
+<h2>Example usage in Controller</h2>
+
+<p>This will replace the IndexController.php in the <a href="https://github.com/zendframework/ZendSkeletonApplication">Zend Framework Skeleton application</a>.
+Given you have a database-table "album" in your database, this will output all records "Name" from that table.</p>
+
+<p><strong><em>module/Application/src/Application/Controller/IndexController.php:</em></strong></p>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Zend Framework (http://framework.zend.com/)</span>
+<span class="sd"> *</span>
+<span class="sd"> * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository</span>
+<span class="sd"> * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)</span>
+<span class="sd"> * @license   http://framework.zend.com/license/new-bsd New BSD License</span>
+<span class="sd"> */</span>
+
+<span class="k">namespace</span> <span class="nx">Application\Controller</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Zend\Mvc\Controller\AbstractActionController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Zend\View\Model\ViewModel</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">IndexController</span> <span class="k">extends</span> <span class="nx">AbstractActionController</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$albumService</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$options</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">indexAction</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Get all albums from service</span>
+        <span class="nv">$albums</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getAlbumService</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">findAll</span><span class="p">();</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$albums</span> <span class="k">as</span> <span class="nv">$album</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">echo</span> <span class="nv">$album</span><span class="o">-&gt;</span><span class="na">getName</span><span class="p">()</span> <span class="o">.</span> <span class="s2">"&lt;br /&gt;"</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">exit</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getAlbumService</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">albumService</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">albumService</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">getServiceLocator</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">'ZmcBase\Service\Album'</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">albumService</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Also, you need to fix your global.php and local.php config files if you have not done this yet:</p>
+
+<p><strong><em>config/autoload/global.php:</em></strong></p>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Global Configuration Override</span>
+<span class="sd"> *</span>
+<span class="sd"> * You can use this file for overridding configuration values from modules, etc.</span>
+<span class="sd"> * You would place values in here that are agnostic to the environment and not</span>
+<span class="sd"> * sensitive to security.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @NOTE: In practice, this file will typically be INCLUDED in your source</span>
+<span class="sd"> * control, so do not include passwords or other sensitive information in this</span>
+<span class="sd"> * file.</span>
+<span class="sd"> */</span>
+
+<span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'db'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'driver'</span>         <span class="o">=&gt;</span> <span class="s1">'Pdo'</span><span class="p">,</span>
+        <span class="s1">'dsn'</span>            <span class="o">=&gt;</span> <span class="s1">'mysql:dbname=[YOUR_DATABASE_NAME];host=[YOUR_DB_HOST]'</span><span class="p">,</span>
+        <span class="s1">'driver_options'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="nx">PDO</span><span class="o">::</span><span class="na">MYSQL_ATTR_INIT_COMMAND</span> <span class="o">=&gt;</span> <span class="s1">'SET NAMES \'UTF8\''</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+    <span class="s1">'service_manager'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'factories'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+            <span class="s1">'Zend\Db\Adapter\Adapter'</span>
+                    <span class="o">=&gt;</span> <span class="s1">'Zend\Db\Adapter\AdapterServiceFactory'</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+
+<p><strong><em>config/autoload/local.php:</em></strong></p>
+
+<div class="highlight"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="sd">/**</span>
+<span class="sd"> * Local Configuration Override</span>
+<span class="sd"> *</span>
+<span class="sd"> * This configuration override file is for overriding environment-specific and</span>
+<span class="sd"> * security-sensitive configuration information. Copy this file without the</span>
+<span class="sd"> * .dist extension at the end and populate values as needed.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @NOTE: This file is ignored from Git by default with the .gitignore included</span>
+<span class="sd"> * in ZendSkeletonApplication. This is a good practice, as it prevents sensitive</span>
+<span class="sd"> * credentials from accidentally being comitted into version control.</span>
+<span class="sd"> */</span>
+
+<span class="k">return</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s1">'db'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">'username'</span> <span class="o">=&gt;</span> <span class="s1">'[DB_USERNAME]'</span><span class="p">,</span>
+        <span class="s1">'password'</span> <span class="o">=&gt;</span> <span class="s1">'[DB_PASSWORD]'</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/hussfelt">hussfelt</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
