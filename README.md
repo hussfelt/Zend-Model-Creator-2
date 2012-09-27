@@ -49,6 +49,7 @@ Run with php:
 
 1. Move your [NAMESPACE] directory into the /vendor/ directory
 2. Add [NAMESPACE] to your application.config.php:
+
 ```php
 return array(
     'modules' => array(
