@@ -355,7 +355,7 @@ class ZendModelCreator {
 
 			// If user specifies that mapper files should be created, do it
 			if($types['create_mapper']) {
-				$mapperFileName = self::toCamelCase(ucfirst(strtolower($table)));
+				$mapperFileName = self::toCamelCase(ucfirst(strtolower($table))) . "Mapper";
 				// Check if the mapper directory exists, else create it
 				if(!is_dir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper') && !mkdir(self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper')) {
 					die("Can't create dir: " . self::$_namespace . $DS . 'src' . $DS . self::$_namespace . $DS . 'Mapper');

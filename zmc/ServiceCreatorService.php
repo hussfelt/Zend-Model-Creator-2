@@ -352,7 +352,7 @@ class " . ucfirst(strtolower($className)) . " implements EventManagerAwareInterf
 		$this->_data.="\t\t\$eventManager->setIdentifiers(\n";
 		$this->_data.="\t\t\t__CLASS__,\n";
 		$this->_data.="\t\t\tget_called_class(),\n";
-		$this->_data.="\t\t\t" . strtolower($className) . "\n";
+		$this->_data.="\t\t\t'" . strtolower($className) . "'\n";
 		$this->_data.="\t\t);\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t\$eventManager->setEventClass('" . ZendModelCreator::getNamespace() . "\Service\\" . ucfirst(strtolower($className)) . "Event');\n";
