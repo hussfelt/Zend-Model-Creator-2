@@ -7,7 +7,6 @@
 * @license		SEE LICENCE
 *
 **/
-require_once 'ZendModelCreator.php';
 
 class OptionsCreatorService {
 
