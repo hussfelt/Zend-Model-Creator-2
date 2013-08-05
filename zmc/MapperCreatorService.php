@@ -44,11 +44,11 @@ class MapperCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
-* file: ".$sNewClassName."Mapper.php
-* " . $sNewClassName . " mapper
+* file: ".$sCamelClassName."Mapper.php
+* " . $sCamelClassName . " mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -61,7 +61,7 @@ namespace ".ZendModelCreator::getNamespace()."\Mapper;
 
 use ArrayObject;
 
-use ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . ";
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . ";
 
 use Zend\Db\Sql\Delete;
 use Zend\Db\Sql\Select;
@@ -73,7 +73,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use ZfcBase\Mapper\AbstractDbMapper;
 
 /**
-* " . $sNewClassName . "Mapper
+* " . $sCamelClassName . "Mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -81,7 +81,7 @@ use ZfcBase\Mapper\AbstractDbMapper;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $sNewClassName . "Mapper extends AbstractDbMapper
+class " . $sCamelClassName . "Mapper extends AbstractDbMapper
 {
 ";
 	}
@@ -91,14 +91,14 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	*
 	*/
 	private function _generateConstructor($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data.="\t/**\n";
-		$this->_data.="\t* " . $sNewClassName . "Mapper constructor\n";
+		$this->_data.="\t* " . $sCamelClassName . "Mapper constructor\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function __construct()\n";
 		$this->_data.="\t{\n";
-		$this->_data.="\t\t\$this->setEntityPrototype(new " . $sNewClassName . ");\n";
+		$this->_data.="\t\t\$this->setEntityPrototype(new " . $sCamelClassName . ");\n";
 		$this->_data.="\t\t\$this->setHydrator(new ClassMethods);\n";
 		$this->_data.="\t}\n\n";
 	}
@@ -108,13 +108,13 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindById($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find a record by id\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param int \$id\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findById(\$id)\n";
 		$this->_data.="\t{\n";
@@ -132,12 +132,12 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindAll($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
@@ -153,15 +153,15 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generatePersist($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Save a record\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function persist(" . $sNewClassName . " \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function persist(" . $sCamelClassName . " \$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\tif (\$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "() > 0) {\n";
 		$this->_data.="\t\t\t\$where = new Where;\n";

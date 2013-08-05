@@ -52,11 +52,11 @@ class ServiceCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
-* file: " . $sNewClassName . ".php
-* " . $sNewClassName . " Service
+* file: " . $sCamelClassName . ".php
+* " . $sCamelClassName . " Service
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -78,7 +78,7 @@ use Zend\EventManager\EventManagerAwareInterface;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 /**
-* " . $sNewClassName . "
+* " . $sCamelClassName . "
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -86,7 +86,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $sNewClassName . " implements EventManagerAwareInterface
+class " . $sCamelClassName . " implements EventManagerAwareInterface
 {
     protected \$mapper;
     protected \$options;
@@ -114,13 +114,13 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateFindById($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find a record by id\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param int \$id\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findById(\$id)\n";
 		$this->_data.="\t{\n";
@@ -136,12 +136,12 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateFindAll($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
@@ -155,20 +155,20 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateCreate($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Create a record\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param array/object \$" . strtolower($className) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function create(\$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// If we're getting an array, convert to a UserEntity\n";
 		$this->_data.="\t\tif (is_array(\$" . strtolower($className) . ")) {\n";
 		$this->_data.="\t\t\t\$hydrator = new ClassMethods;\n";
-		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$hydrator->hydrate(\$" . strtolower($className) . ", new " . $sNewClassName . "Entity);\n";
+		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$hydrator->hydrate(\$" . strtolower($className) . ", new " . $sCamelClassName . "Entity);\n";
 		$this->_data.="\t\t}\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Save the record\n";
@@ -178,7 +178,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for adding a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sNewClassName . "Event::EVENT_ADD_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_ADD_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\treturn \$" . strtolower($className) . ";\n";
 		$this->_data.="\t}\n\n";
@@ -190,20 +190,20 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateUpdate($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Update a record\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param array/object \$" . strtolower($className) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function update(\$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// If we're getting an array, convert to a UserEntity\n";
 		$this->_data.="\t\tif (is_array(\$" . strtolower($className) . ")) {\n";
 		$this->_data.="\t\t\t\$hydrator = new ClassMethods;\n";
-		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$hydrator->hydrate(\$" . strtolower($className) . ", new " . $sNewClassName . "Entity);\n";
+		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$hydrator->hydrate(\$" . strtolower($className) . ", new " . $sCamelClassName . "Entity);\n";
 		$this->_data.="\t\t}\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Save the record\n";
@@ -213,7 +213,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for updating a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sNewClassName . "Event::EVENT_UPDATE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_UPDATE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\treturn \$" . strtolower($className) . ";\n";
 		$this->_data.="\t}\n\n";
@@ -224,7 +224,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateDelete($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Delete a record\n";
@@ -234,8 +234,8 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function delete(\$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
-		$this->_data.="\t\t// If the variable \$" . strtolower($className) . " is an instance of " . $sNewClassName . "Entity, get the " . $this->_primary_key . " out of the object\n";
-		$this->_data.="\t\tif (\$" . strtolower($className) . " instanceof " . $sNewClassName . "Entity) {\n";
+		$this->_data.="\t\t// If the variable \$" . strtolower($className) . " is an instance of " . $sCamelClassName . "Entity, get the " . $this->_primary_key . " out of the object\n";
+		$this->_data.="\t\tif (\$" . strtolower($className) . " instanceof " . $sCamelClassName . "Entity) {\n";
 		$this->_data.="\t\t\t\$" . strtolower($className) . " = \$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "();\n";
 		$this->_data.="\t\t}\n";
 		$this->_data.="\n";
@@ -243,7 +243,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for deleting a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sNewClassName . "Event::EVENT_DELETE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_DELETE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Return the result of deleting the record\n";
 		$this->_data.="\t\treturn \$this->mapper->delete(\$" . strtolower($className) . ");\n";
@@ -255,12 +255,12 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateGetMapper($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get the mapper\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . $sNewClassName . "Mapper\n";
+		$this->_data.="\t* @return objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . $sCamelClassName . "Mapper\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function getMapper()\n";
 		$this->_data.="\t{\n";
@@ -274,12 +274,12 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateSetMapper($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set the mapper\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @param objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . $sNewClassName . "Mapper\n";
+		$this->_data.="\t* @param objects object ".ZendModelCreator::getNamespace()."\Mapper\\" . $sCamelClassName . "Mapper\n";
 		$this->_data.="\t* @return object \$this\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function setMapper(\$mapper)\n";
@@ -294,7 +294,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateGetOptions($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get the mapper\n";
@@ -350,7 +350,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateSetEventManager($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase($className);
+		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set the Event Manager\n";
@@ -366,7 +366,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\t'" . strtolower($className) . "'\n";
 		$this->_data.="\t\t);\n";
 		$this->_data.="\n";
-		$this->_data.="\t\t\$eventManager->setEventClass('" . ZendModelCreator::getNamespace() . "\Service\\" . $sNewClassName . "Event');\n";
+		$this->_data.="\t\t\$eventManager->setEventClass('" . ZendModelCreator::getNamespace() . "\Service\\" . $sCamelClassName . "Event');\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t\$this->eventManager = \$eventManager;\n";
 		$this->_data.="\t\treturn \$this;\n";
