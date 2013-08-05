@@ -8,7 +8,7 @@
 *
 **/
 
-require_once 'ZendModelCreator.php';//ycheukf
+require_once 'ZendModelCreator.php';
 
 class EntityCreatorService {
 
@@ -50,7 +50,7 @@ class EntityCreatorService {
 	 */
 	private function _generateClassHeader($className) {
 		
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
 * file: " . $sNewClassName . ".php

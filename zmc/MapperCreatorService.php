@@ -7,7 +7,7 @@
 * @license		SEE LICENCE
 *
 **/
-require_once 'ZendModelCreator.php';//ycheukf
+require_once 'ZendModelCreator.php';
 
 class MapperCreatorService {
 
@@ -44,7 +44,7 @@ class MapperCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
 * file: ".$sNewClassName."Mapper.php
@@ -91,7 +91,7 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	*
 	*/
 	private function _generateConstructor($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* " . $sNewClassName . "Mapper constructor\n";
 		$this->_data.="\t*\n";
@@ -108,7 +108,7 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindById($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find a record by id\n";
@@ -132,7 +132,7 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindAll($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
@@ -153,7 +153,7 @@ class " . $sNewClassName . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generatePersist($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Save a record\n";

@@ -7,7 +7,7 @@
 * @license		SEE LICENCE
 *
 **/
-require_once 'ZendModelCreator.php';//ycheukf
+require_once 'ZendModelCreator.php';
 
 class ServiceCreatorService {
 
@@ -52,7 +52,7 @@ class ServiceCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
 * file: " . $sNewClassName . ".php
@@ -114,7 +114,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateFindById($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find a record by id\n";
@@ -136,7 +136,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateFindAll($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
@@ -155,7 +155,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateCreate($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Create a record\n";
@@ -190,7 +190,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateUpdate($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Update a record\n";
@@ -224,7 +224,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateDelete($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Delete a record\n";
@@ -255,7 +255,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateGetMapper($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get the mapper\n";
@@ -274,7 +274,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateSetMapper($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set the mapper\n";
@@ -294,7 +294,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateGetOptions($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get the mapper\n";
@@ -350,7 +350,7 @@ class " . $sNewClassName . " implements EventManagerAwareInterface
 	 *
 	 */
 	private function _generateSetEventManager($className) {
-		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$sNewClassName = ZendModelCreator::toCamelCase($className);
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set the Event Manager\n";
