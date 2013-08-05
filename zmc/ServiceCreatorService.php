@@ -178,7 +178,7 @@ class " . $sCamelClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for adding a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_ADD_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_ADD_" . strtoupper($sCamelClassName) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\treturn \$" . strtolower($className) . ";\n";
 		$this->_data.="\t}\n\n";
@@ -213,7 +213,7 @@ class " . $sCamelClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for updating a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_UPDATE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_UPDATE_" . strtoupper($sCamelClassName) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\treturn \$" . strtolower($className) . ";\n";
 		$this->_data.="\t}\n\n";
@@ -243,7 +243,7 @@ class " . $sCamelClassName . " implements EventManagerAwareInterface
 		$this->_data.="\t\t\$events = \$this->getEventManager();\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Trigger event for deleting a record\n";
-		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_DELETE_" . strtoupper($className) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
+		$this->_data.="\t\t\$events->trigger(" . $sCamelClassName . "Event::EVENT_DELETE_" . strtoupper($sCamelClassName) . "_POST, \$this, array('" . strtolower($className) . "' => \$" . strtolower($className) . "));\n";
 		$this->_data.="\n";
 		$this->_data.="\t\t// Return the result of deleting the record\n";
 		$this->_data.="\t\treturn \$this->mapper->delete(\$" . strtolower($className) . ");\n";
