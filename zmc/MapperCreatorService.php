@@ -7,6 +7,7 @@
 * @license		SEE LICENCE
 *
 **/
+require_once 'ZendModelCreator.php';//ycheukf
 
 class MapperCreatorService {
 
@@ -43,10 +44,11 @@ class MapperCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		$this->_data .= "<?php
 /**
-* file: ".$className."Mapper.php
-* " . ucfirst(strtolower($className)) . " mapper
+* file: ".$sNewClassName."Mapper.php
+* " . $sNewClassName . " mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -59,7 +61,7 @@ namespace ".ZendModelCreator::getNamespace()."\Mapper;
 
 use ArrayObject;
 
-use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . ";
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . ";
 
 use Zend\Db\Sql\Delete;
 use Zend\Db\Sql\Select;
@@ -71,7 +73,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use ZfcBase\Mapper\AbstractDbMapper;
 
 /**
-* " . ucfirst(strtolower($className)) . "Mapper
+* " . $sNewClassName . "Mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -79,7 +81,7 @@ use ZfcBase\Mapper\AbstractDbMapper;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
+class " . $sNewClassName . "Mapper extends AbstractDbMapper
 {
 ";
 	}
@@ -89,13 +91,14 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 	*
 	*/
 	private function _generateConstructor($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		$this->_data.="\t/**\n";
-		$this->_data.="\t* " . $className . "Mapper constructor\n";
+		$this->_data.="\t* " . $sNewClassName . "Mapper constructor\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function __construct()\n";
 		$this->_data.="\t{\n";
-		$this->_data.="\t\t\$this->setEntityPrototype(new " . $className . ");\n";
+		$this->_data.="\t\t\$this->setEntityPrototype(new " . $sNewClassName . ");\n";
 		$this->_data.="\t\t\$this->setHydrator(new ClassMethods);\n";
 		$this->_data.="\t}\n\n";
 	}
@@ -105,12 +108,13 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindById($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find a record by id\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param int \$id\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findById(\$id)\n";
 		$this->_data.="\t{\n";
@@ -128,11 +132,12 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generateFindAll($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
@@ -148,14 +153,15 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 	 *
 	 */
 	private function _generatePersist($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		// Set fetch function headers
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Save a record\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . "\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function persist(" . ucfirst(strtolower($className)) . " \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function persist(" . $sNewClassName . " \$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\tif (\$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "() > 0) {\n";
 		$this->_data.="\t\t\t\$where = new Where;\n";

@@ -7,6 +7,7 @@
 * @license		SEE LICENCE
 *
 **/
+require_once 'ZendModelCreator.php';//ycheukf
 
 class EventCreatorService {
 
@@ -32,10 +33,11 @@ class EventCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		$this->_data .= "<?php
 /**
-* file: " . ucfirst(strtolower($className)) . "Event.php
-* " . ucfirst(strtolower($className)) . " Event
+* file: " . $sNewClassName . "Event.php
+* " . $sNewClassName . " Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -47,12 +49,12 @@ namespace ".ZendModelCreator::getNamespace()."\Service;
 
 use ArrayObject;
 
-use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $sNewClassName . " as " . $sNewClassName . "Entity;
 
 use Zend\EventManager\Event;
 
 /**
-* " . ucfirst(strtolower($className)) . "Event
+* " . $sNewClassName . "Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -60,7 +62,7 @@ use Zend\EventManager\Event;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . ucfirst(strtolower($className)) . " extends Event
+class " . $sNewClassName . " extends Event
 {
 ";
 	}
@@ -69,9 +71,10 @@ class " . ucfirst(strtolower($className)) . " extends Event
 	* Generate constants
 	*/
 	private function _generateConstants($className) {
-		$this->_data.="\tconst EVENT_ADD_" . strtoupper($className) . "_POST = 'add" . ucfirst(strtolower($className)) . ".post';\n";
-		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'update" . ucfirst(strtolower($className)) . ".post';\n";
-		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($className) . "_POST = 'delete" . ucfirst(strtolower($className)) . ".post';\n";
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+		$this->_data.="\tconst EVENT_ADD_" . strtoupper($sNewClassName) . "_POST = 'add" . $sNewClassName . ".post';\n";
+		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($sNewClassName) . "_POST = 'update" . $sNewClassName . ".post';\n";
+		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($sNewClassName) . "_POST = 'delete" . $sNewClassName . ".post';\n";
 		$this->_data.="\n";
 	}
 
@@ -79,11 +82,12 @@ class " . ucfirst(strtolower($className)) . " extends Event
 	* Generate get
 	*/
 	private function _generateGet($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get record from event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function get" . ucfirst(strtolower($className)) . "()\n";
+		$this->_data.="\tpublic function get" . $sNewClassName . "()\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Return param\n";
 		$this->_data.="\t\treturn \$this->getParam('" . strtolower($className) . "');\n";
@@ -94,11 +98,13 @@ class " . ucfirst(strtolower($className)) . " extends Event
 	* Generate set
 	*/
 	private function _generateSet($className) {
+		$sNewClassName = ZendModelCreator::toCamelCase(ucfirst(strtolower($className)));//@ycheukf
+
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set record to event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function set" . ucfirst(strtolower($className)) . "(" . $className . "Entity \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function set" . $sNewClassName . "(" . $sNewClassName . "Entity \$" . strtolower($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Set param\n";
 		$this->_data.="\t\t\$this->setParam('" . strtolower($className) . "', \$" . strtolower($className) . ");\n";
