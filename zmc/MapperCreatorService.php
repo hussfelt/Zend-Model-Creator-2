@@ -46,7 +46,7 @@ class MapperCreatorService {
 		$this->_data .= "<?php
 /**
 * file: ".$className."Mapper.php
-* " . ucfirst(strtolower($className)) . " mapper
+* " . $className . " mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -71,7 +71,7 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 use ZfcBase\Mapper\AbstractDbMapper;
 
 /**
-* " . ucfirst(strtolower($className)) . "Mapper
+* " . $className . "Mapper
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -79,7 +79,7 @@ use ZfcBase\Mapper\AbstractDbMapper;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
+class " . $className . "Mapper extends AbstractDbMapper
 {
 ";
 	}
@@ -110,12 +110,12 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 		$this->_data.="\t* Find a record by id\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t* @param int \$id\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $className . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findById(\$id)\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t\$select = new Select;\n";
-		$this->_data.="\t\t\$select->from('" . strtolower($className) . "');\n";
+		$this->_data.="\t\t\$select->from('" . ZendModelCreator::fromCamelCase($className) . "');\n";
 		$this->_data.="\t\t\$where = new Where;\n";
 		$this->_data.="\t\t\$where->equalTo('" . $this->_primary_key . "', \$id);\n";
 		$this->_data.="\t\t\$result = \$this->select(\$select->where(\$where))->current();\n";
@@ -132,12 +132,12 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Find all records\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @return array objects ".ZendModelCreator::getNamespace()."\Entity\\" . $className . "\n";
 		$this->_data.="\t**/\n";
 		$this->_data.="\tpublic function findAll()\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t\$select = new Select;\n";
-		$this->_data.="\t\t\$select->from('" . strtolower($className) . "');\n";
+		$this->_data.="\t\t\$select->from('" . ZendModelCreator::fromCamelCase($className) . "');\n";
 		$this->_data.="\t\t\$result = \$this->select(\$select);\n";
 		$this->_data.="\t\treturn \$result;\n";
 		$this->_data.="\t}\n\n";
@@ -152,20 +152,20 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Save a record\n";
 		$this->_data.="\t*\n";
-		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
-		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . ucfirst(strtolower($className)) . "\n";
+		$this->_data.="\t* @param object ".ZendModelCreator::getNamespace()."\Entity\\" . $className . "\n";
+		$this->_data.="\t* @return object ".ZendModelCreator::getNamespace()."\Entity\\" . $className . "\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function persist(" . ucfirst(strtolower($className)) . " \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function persist(" . $className . " \$" . ZendModelCreator::fromCamelCase($className) . ")\n";
 		$this->_data.="\t{\n";
-		$this->_data.="\t\tif (\$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "() > 0) {\n";
+		$this->_data.="\t\tif (\$" . ZendModelCreator::fromCamelCase($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "() > 0) {\n";
 		$this->_data.="\t\t\t\$where = new Where;\n";
-		$this->_data.="\t\t\t\$where->equalTo('" . $this->_primary_key . "', \$" . strtolower($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "());\n";
-		$this->_data.="\t\t\t\$this->update(\$" . strtolower($className) . ", \$where, '" . strtolower($className) . "');\n";
+		$this->_data.="\t\t\t\$where->equalTo('" . $this->_primary_key . "', \$" . ZendModelCreator::fromCamelCase($className) . "->get" . ZendModelCreator::toCamelCase($this->_primary_key) . "());\n";
+		$this->_data.="\t\t\t\$this->update(\$" . ZendModelCreator::fromCamelCase($className) . ", \$where, '" . ZendModelCreator::fromCamelCase($className) . "');\n";
 		$this->_data.="\t\t} else {\n";
-		$this->_data.="\t\t\t\$result = \$this->insert(\$" . strtolower($className) . ", '" . strtolower($className) . "');\n";
-		$this->_data.="\t\t\t\$" . strtolower($className) . "->set" . ZendModelCreator::toCamelCase($this->_primary_key) . "(\$result->getGeneratedValue());\n";
+		$this->_data.="\t\t\t\$result = \$this->insert(\$" . ZendModelCreator::fromCamelCase($className) . ", '" . ZendModelCreator::fromCamelCase($className) . "');\n";
+		$this->_data.="\t\t\t\$" . ZendModelCreator::fromCamelCase($className) . "->set" . ZendModelCreator::toCamelCase($this->_primary_key) . "(\$result->getGeneratedValue());\n";
 		$this->_data.="\t\t}\n";
-		$this->_data.="\t\treturn \$" . strtolower($className) . ";\n";
+		$this->_data.="\t\treturn \$" . ZendModelCreator::fromCamelCase($className) . ";\n";
 		$this->_data.="\t}\n\n";
 	}
 
@@ -189,7 +189,7 @@ class " . ucfirst(strtolower($className)) . "Mapper extends AbstractDbMapper
 		$this->_data.="\t\t\$where = new Where;\n";
 		$this->_data.="\t\t\$where->equalTo('" . $this->_primary_key . "', \$" . $this->_primary_key . ");\n";
 		$this->_data.="\t\t\$sql = new Delete;\n";
-		$this->_data.="\t\t\$sql->from('" . strtolower($className) . "')->where(\$where);\n";
+		$this->_data.="\t\t\$sql->from('" . ZendModelCreator::fromCamelCase($className) . "')->where(\$where);\n";
 		$this->_data.="\t\t\$sql->prepareStatement(\$adapter, \$statement);\n";
 		$this->_data.="\t\t\$result = \$statement->execute();\n";
 		$this->_data.="\t\treturn \$result;\n";

@@ -49,8 +49,8 @@ class EntityCreatorService {
 	private function _generateClassHeader($className) {
 		$this->_data .= "<?php
 /**
-* file: " . ucfirst(strtolower($className)) . ".php
-* " . ucfirst(strtolower($className)) . " entity
+* file: " . $className . ".php
+* " . $className . " entity
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -62,7 +62,7 @@ class EntityCreatorService {
 namespace ".ZendModelCreator::getNamespace()."\Entity;
 
 /**
-* " . ucfirst(strtolower($className)) . "
+* " . $className . "
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -70,7 +70,7 @@ namespace ".ZendModelCreator::getNamespace()."\Entity;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . ucfirst(strtolower($className)) . "
+class " . $className . "
 {
 ";
 	}

@@ -34,8 +34,8 @@ class EventCreatorService {
 	private function _generateClassHeader($className) {
 		$this->_data .= "<?php
 /**
-* file: " . ucfirst(strtolower($className)) . "Event.php
-* " . ucfirst(strtolower($className)) . " Event
+* file: " . $className . "Event.php
+* " . $className . " Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -52,7 +52,7 @@ use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . " as " . $clas
 use Zend\EventManager\Event;
 
 /**
-* " . ucfirst(strtolower($className)) . "Event
+* " . $className . "Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -60,7 +60,7 @@ use Zend\EventManager\Event;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . ucfirst(strtolower($className)) . " extends Event
+class " . $className . "Event extends Event
 {
 ";
 	}
@@ -69,9 +69,9 @@ class " . ucfirst(strtolower($className)) . " extends Event
 	* Generate constants
 	*/
 	private function _generateConstants($className) {
-		$this->_data.="\tconst EVENT_ADD_" . strtoupper($className) . "_POST = 'add" . ucfirst(strtolower($className)) . ".post';\n";
-		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'update" . ucfirst(strtolower($className)) . ".post';\n";
-		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($className) . "_POST = 'delete" . ucfirst(strtolower($className)) . ".post';\n";
+		$this->_data.="\tconst EVENT_ADD_" . strtoupper($className) . "_POST = 'add" . $className . ".post';\n";
+		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'update" . $className . ".post';\n";
+		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($className) . "_POST = 'delete" . $className . ".post';\n";
 		$this->_data.="\n";
 	}
 
@@ -83,10 +83,10 @@ class " . ucfirst(strtolower($className)) . " extends Event
 		$this->_data.="\t* Get record from event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function get" . ucfirst(strtolower($className)) . "()\n";
+		$this->_data.="\tpublic function get" . $className . "()\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Return param\n";
-		$this->_data.="\t\treturn \$this->getParam('" . strtolower($className) . "');\n";
+		$this->_data.="\t\treturn \$this->getParam('" . ZendModelCreator::fromCamelCase($className) . "');\n";
 		$this->_data.="\t}\n\n";
 	}
 
@@ -98,10 +98,10 @@ class " . ucfirst(strtolower($className)) . " extends Event
 		$this->_data.="\t* Set record to event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function set" . ucfirst(strtolower($className)) . "(" . $className . "Entity \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function set" . $className . "(" . $className . "Entity \$" . ZendModelCreator::fromCamelCase($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Set param\n";
-		$this->_data.="\t\t\$this->setParam('" . strtolower($className) . "', \$" . strtolower($className) . ");\n";
+		$this->_data.="\t\t\$this->setParam('" . ZendModelCreator::fromCamelCase($className) . "', \$" . ZendModelCreator::fromCamelCase($className) . ");\n";
 		$this->_data.="\t\treturn \$this;\n";
 		$this->_data.="\t}";
 	}
