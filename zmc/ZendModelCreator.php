@@ -197,17 +197,17 @@ class ZendModelCreator {
 						switch ($type) {
 							case "create_entity":
 								$EntityService = new EntityCreatorService();
-								$this->_data[$table]['entity'] = $EntityService->createEntity($table, $data);
+								$this->_data[$table]['entity'] = $EntityService->createEntity(self::toCamelCase($table), $data);
 								break;
 							case "create_mapper":
 								$MapperService = new MapperCreatorService();
-								$this->_data[$table]['mapper'] = $MapperService->createMapper($table, $data);
+								$this->_data[$table]['mapper'] = $MapperService->createMapper(self::toCamelCase($table), $data);
 								break;
 							case "create_service":
 								$serviceCreator = new ServiceCreatorService();
-								$this->_data[$table]['service'] = $serviceCreator->createService($table, $data);
+								$this->_data[$table]['service'] = $serviceCreator->createService(self::toCamelCase($table), $data);
 								$EventService = new EventCreatorService();
-								$this->_data[$table]['service_event'] = $EventService->createEventService($table, $data);
+								$this->_data[$table]['service_event'] = $EventService->createEventService(self::toCamelCase($table), $data);
 								break;
 							case "create_module":
 								$createModule = true;
@@ -233,13 +233,13 @@ class ZendModelCreator {
 		// Check if we want to create the module
 		if ($createModule) {
 			$moduleCreator = new ModuleCreatorService();
-			$this->_files['module'] = $moduleCreator->createModule($table, self::$tables);
+			$this->_files['module'] = $moduleCreator->createModule(self::toCamelCase($table), self::$tables);
 		}
 
 		// Check if we want to create the options file
 		if ($createOptions) {
 			$optionsCreator = new OptionsCreatorService();
-			$this->_files['options'] = $optionsCreator->createOptions($table);
+			$this->_files['options'] = $optionsCreator->createOptions(self::toCamelCase($table));
 		}
 
 		// Check if we want to create the config

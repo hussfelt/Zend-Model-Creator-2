@@ -7,7 +7,6 @@
 * @license		SEE LICENCE
 *
 **/
-require_once 'ZendModelCreator.php';
 
 class EventCreatorService {
 
@@ -33,11 +32,10 @@ class EventCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
-* file: " . $sCamelClassName . "Event.php
-* " . $sCamelClassName . " Event
+* file: " . $className . "Event.php
+* " . $className . " Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -49,12 +47,12 @@ namespace ".ZendModelCreator::getNamespace()."\Service;
 
 use ArrayObject;
 
-use ".ZendModelCreator::getNamespace()."\Entity\\" . $sCamelClassName . " as " . $sCamelClassName . "Entity;
+use ".ZendModelCreator::getNamespace()."\Entity\\" . $className . " as " . $className . "Entity;
 
 use Zend\EventManager\Event;
 
 /**
-* " . $sCamelClassName . "Event
+* " . $className . "Event
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -62,7 +60,7 @@ use Zend\EventManager\Event;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $sCamelClassName . " extends Event
+class " . $className . "Event extends Event
 {
 ";
 	}
@@ -71,10 +69,9 @@ class " . $sCamelClassName . " extends Event
 	* Generate constants
 	*/
 	private function _generateConstants($className) {
-		$sCamelClassName = ZendModelCreator::toCamelCase($className);
-		$this->_data.="\tconst EVENT_ADD_" . strtoupper($sCamelClassName) . "_POST = 'add" . $sCamelClassName . ".post';\n";
-		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($sCamelClassName) . "_POST = 'update" . $sCamelClassName . ".post';\n";
-		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($sCamelClassName) . "_POST = 'delete" . $sCamelClassName . ".post';\n";
+		$this->_data.="\tconst EVENT_ADD_" . strtoupper($className) . "_POST = 'add" . $className . ".post';\n";
+		$this->_data.="\tconst EVENT_UPDATE_" . strtoupper($className) . "_POST = 'update" . $className . ".post';\n";
+		$this->_data.="\tconst EVENT_DELETE_" . strtoupper($className) . "_POST = 'delete" . $className . ".post';\n";
 		$this->_data.="\n";
 	}
 
@@ -82,15 +79,14 @@ class " . $sCamelClassName . " extends Event
 	* Generate get
 	*/
 	private function _generateGet($className) {
-		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Get record from event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function get" . $sCamelClassName . "()\n";
+		$this->_data.="\tpublic function get" . $className . "()\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Return param\n";
-		$this->_data.="\t\treturn \$this->getParam('" . strtolower($className) . "');\n";
+		$this->_data.="\t\treturn \$this->getParam('" . ZendModelCreator::fromCamelCase($className) . "');\n";
 		$this->_data.="\t}\n\n";
 	}
 
@@ -98,16 +94,14 @@ class " . $sCamelClassName . " extends Event
 	* Generate set
 	*/
 	private function _generateSet($className) {
-		$sCamelClassName = ZendModelCreator::toCamelCase($className);
-
 		$this->_data.="\t/**\n";
 		$this->_data.="\t* Set record to event\n";
 		$this->_data.="\t*\n";
 		$this->_data.="\t**/\n";
-		$this->_data.="\tpublic function set" . $sCamelClassName . "(" . $sCamelClassName . "Entity \$" . strtolower($className) . ")\n";
+		$this->_data.="\tpublic function set" . $className . "(" . $className . "Entity \$" . ZendModelCreator::fromCamelCase($className) . ")\n";
 		$this->_data.="\t{\n";
 		$this->_data.="\t\t// Set param\n";
-		$this->_data.="\t\t\$this->setParam('" . strtolower($className) . "', \$" . strtolower($className) . ");\n";
+		$this->_data.="\t\t\$this->setParam('" . ZendModelCreator::fromCamelCase($className) . "', \$" . ZendModelCreator::fromCamelCase($className) . ");\n";
 		$this->_data.="\t\treturn \$this;\n";
 		$this->_data.="\t}";
 	}

@@ -8,8 +8,6 @@
 *
 **/
 
-require_once 'ZendModelCreator.php';
-
 class EntityCreatorService {
 
     private $_data = '';
@@ -49,12 +47,10 @@ class EntityCreatorService {
 	 *
 	 */
 	private function _generateClassHeader($className) {
-		
-		$sCamelClassName = ZendModelCreator::toCamelCase($className);
 		$this->_data .= "<?php
 /**
-* file: " . $sCamelClassName . ".php
-* " . $sCamelClassName . " entity
+* file: " . $className . ".php
+* " . $className . " entity
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -66,7 +62,7 @@ class EntityCreatorService {
 namespace ".ZendModelCreator::getNamespace()."\Entity;
 
 /**
-* " . $sCamelClassName . "
+* " . $className . "
 *
 * @author ".ZendModelCreator::getGenerator()."
 * @version ".ZendModelCreator::getVersion()."
@@ -74,7 +70,7 @@ namespace ".ZendModelCreator::getNamespace()."\Entity;
 * @since " . date("Y-m-d") . "
 *
 **/
-class " . $sCamelClassName . "
+class " . $className . "
 {
 ";
 	}
